@@ -29,28 +29,36 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin(form -> form
                 .loginPage("/login")
-                                .defaultSuccessUrl("/home", true)
+                                .defaultSuccessUrl("/usuario/pedido", true)
                 .permitAll()
                 )
                 .logout(logout->logout.logoutUrl("/logout"))
                 .csrf().disable();
     }
 
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//
+//        UserDetails user =
+//                User.builder()
+//                        .username("Nhonho")
+//                        .password(encoder.encode("123"))
+//                        .roles("ADM")
+//                        .build();
+//
+//            auth.jdbcAuthentication()
+//                .dataSource(dataSource)
+//                .passwordEncoder(encoder)
+//                .withUser(user);
+//    }
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-        UserDetails user =
-                User.builder()
-                        .username("Chaves")
-                        .password(encoder.encode("123"))
-                        .roles("ADM")
-                        .build();
-
-            auth.jdbcAuthentication()
+        auth.jdbcAuthentication()
                 .dataSource(dataSource)
-                .passwordEncoder(encoder)
-                .withUser(user);
+                .passwordEncoder(encoder);
     }
 
 }

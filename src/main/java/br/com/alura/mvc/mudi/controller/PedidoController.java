@@ -43,6 +43,6 @@ public class PedidoController {
         Pedido pedido = requisicao.toPedido();
         pedido.setUser(user);
         pedidoRepository.save(pedido);
-        return "redirect:/home";
+        return "redirect:/usuario/pedido";
     }
 }
