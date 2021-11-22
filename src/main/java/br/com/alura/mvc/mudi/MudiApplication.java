@@ -1,8 +1,9 @@
 package br.com.alura.mvc.mudi;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
+//@EnableCasting
 @SpringBootApplication
 public class MudiApplication {
 
