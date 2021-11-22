@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Pedidos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="">
+    <div class="logo-container p-3 mb-2 bg-success text-white  d-flex justify-content-between mb-3">
+        <span>mudi</span>
+        <span class="mt-3">
+        <a class="text-light" sec:authorize="!isAuthenticated()" href="/login">login</a>
+        <a onclick="document.querySelector('#form-login').submit()" class="text-light" sec:authorize="isAuthenticated()" href="#">logout</a>
+        <form id="form-login" th:action="@{/logout}" method="post"></form>
+        </span>
+    </div>
+    <div class="row mb-2">
+        <div class="col">
+            <nav class="nav">
+                <a class="nav-link" th:href="@{/home}">Home</a>
+                <a class="nav-link" th:href="@{/usuario/pedido}">Meus Pedidos</a>
+
+            </nav>
+        </div>
+</div>
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-4">Mais Pedidos</h1>
+    </div>
+
+    <div class="card mb-3" th:each="pedido : ${pedido}">
+
+
+          <div class="card-header alert-dark" th:text="${pedido.nomeProduto}">Nome do Produto</div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-sm-8 mb-3">
+                    <div class="row">
+                        <div class="col-md-6"> Valor:<span th:text="${#numbers.formatCurrency(pedido.valor)}">299.90</span></div>
+                        <div class="col-md-6" >Data de Entrega:<span th:text="${pedido.dataDeEntrega}">10/02/2021</span></div>
+                    </div>
+                    <div>Produto</div>
+                    <div><input class="form-control" th:value="${pedido.urlProduto}" value="url do produto"></div>
+
+                    <div>Descrição</div>
+                    <div class="form-control" th:text="${pedido.descricao}">
+                        <textarea>descrição do produto</textarea>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <div>
+                        <img class="img-thumbnail" th:src="${pedido.urlImagem}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

@@ -24,18 +24,18 @@ public class HomeController {
     @GetMapping
     public String home(Model model, Principal principal){
 
-        List<Pedido> pedidos = repository.findAll();
+        List<Pedido> pedidos = repository.findByStatus(StatusPedido.ENTREGUE);
         model.addAttribute("pedido", pedidos);
         return "home";
     }
-    @GetMapping("/{status}")
-    public String porStatus(@PathVariable("status") String status, Model model){
-
-        List<Pedido> pedidos = repository.findByStatus(StatusPedido.valueOf(status.toUpperCase()));
-        model.addAttribute("pedido", pedidos);
-        model.addAttribute("status",status);
-        return "home";
-    }
+//    @GetMapping("/{status}")
+//    public String porStatus(@PathVariable("status") String status, Model model){
+//
+//        List<Pedido> pedidos = repository.findByStatus(StatusPedido.ENTREGUE);
+//        model.addAttribute("pedido", pedidos);
+//        model.addAttribute("status",status);
+//        return "home";
+//    }
     @ExceptionHandler(IllegalArgumentException.class)
     public String onError(){
         return "redirect:/home";
