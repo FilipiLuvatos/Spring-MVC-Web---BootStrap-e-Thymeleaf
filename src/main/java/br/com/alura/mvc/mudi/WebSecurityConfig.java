@@ -38,26 +38,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout(logout -> {
                     logout.logoutUrl("/logout")
                             .logoutSuccessUrl("/home");
-                });
+                }).csrf().disable();
 
     }
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-//
-//        UserDetails user =
-//                User.builder()
-//                        .username("Nhonho")
-//                        .password(encoder.encode("123"))
-//                        .roles("ADM")
-//                        .build();
-//
-//            auth.jdbcAuthentication()
-//                .dataSource(dataSource)
-//                .passwordEncoder(encoder)
-//                .withUser(user);
-//    }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
