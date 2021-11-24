@@ -13,7 +13,7 @@ public class RequisicaoNovaOferta { // objeto para receber os valores que o usua
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     private long pedidoId;
-
+    //comentar a linha abaixo antes de dar com
     //@Pattern(regexp = "^\\d+(\\.\\d+{2})?$")
     @NotNull
     private String valor;
