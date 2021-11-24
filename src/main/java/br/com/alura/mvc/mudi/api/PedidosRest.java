@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/pedidos")
 public class PedidosRest {
-
+    //endPoint para buscar pedidos que estavam aguardando
     @Autowired
     private PedidoRepository pedidoRepository;
 

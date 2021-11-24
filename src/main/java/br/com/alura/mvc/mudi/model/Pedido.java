@@ -3,6 +3,7 @@ package br.com.alura.mvc.mudi.model;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Pedido {
@@ -22,6 +23,9 @@ public class Pedido {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
+    //FetchType.LAZY --> para não buscar todas as ofertas
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", fetch = FetchType.LAZY)
+    private List<Oferta> oferta;
 
     public User getUser() {
         return user;
@@ -93,5 +97,13 @@ public class Pedido {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public List<Oferta> getOferta() {
+        return oferta;
+    }
+
+    public void setOferta(List<Oferta> oferta) {
+        this.oferta = oferta;
     }
 }
